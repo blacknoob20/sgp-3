@@ -1,0 +1,236 @@
+MainRouter
+|_ PublicRouter
+|	|_ LoginPage
+|	|_ UserIdentityRouter
+|		|_ PublicRouter
+|		|	|_ VerifyIdentityPage
+|		|_ PrivateRouter
+|			|_ UserQuestionsPage
+|			|_ ForgotPassPage
+|_ PrivateRouter
+|	|_ SubMainRouter
+|   |   |_af
+|   |   |   |_ TenenciaPage
+|   |   |_cf
+|   |   |_cm
+|   |   |   |_ PersonaPage
+|   |   |   |_ AgrupacionPage
+|   |   |_fn
+|   |   |   |_ rn
+|   |   |   |   |_ Mantenimientos
+|   |   |   |   |   |_ Contribuyentes
+|   |   |   |   |   |_ Tareas de Tasas
+|   |   |   |   |   |_ Proceso de Tasas
+|   |   |   |   |   |_ Tipos de Titulo
+|   |   |   |   |   |_ Tipos de Gestiones
+|   |   |   |   |   |_ Tipos de Rentas
+|   |   |   |   |   |_ Rubros
+|   |   |   |   |   |_ Tipos de Notificaciones
+|   |   |   |   |   |_ Impuesto al Rodaje
+|   |   |   |   |   |_ Intereses y Descuentos
+|   |   |   |   |   |_ Zona de Influencia
+|   |   |   |   |   |_ Clasificacion Construccion
+|   |   |   |   |   |_ Grupo de Cuentas
+|   |   |   |   |   |_ Parametros de Correo
+|   |   |   |   |_ Procesos
+|   |   |   |   |   |_ Pre-Titulos
+|   |   |   |   |   |_ Pre-Titulo(Catastro)
+|   |   |   |   |   |_ Generacion de Titulos
+|   |   |   |   |   |_ Titulos de Credito
+|   |   |   |   |   |_ Notificacion
+|   |   |   |   |   |_ Dar de Baja
+|   |   |   |   |   |_ Gestiones de Alcabalas
+|   |   |   |   |   |_ Alcabalas
+|   |   |   |   |   |_ Validaciones de Tasas
+|   |   |   |   |   |_ Ficha Catastral
+|   |   |   |   |   |_ Convenio de Pago
+|   |   |   |   |   |_ Aprobacion Convenio de Pago
+|   |   |   |   |   |_ Rubros de Obra
+|   |   |   |   |   |_ Cuentas X Contribuyentes
+|   |   |   |   |   |_ Aprobacion Preasiento Capital
+|   |   |   |   |   |_ Aprobacion Preasiento Interes
+|   |   |   |   |   |_ Aprobacion Preasiento Recaudaciones
+|   |   |   |   |   |_ Aprobacion Preasiento Rec. Diarias
+|   |   |   |   |   |_ Aprobar Valor Titulo Antiguo
+|   |   |   |   |   |_ Parametros Titulos Antiguo
+|   |   |   |   |_ Recaudaciones
+|   |   |   |   |   |_ Cobro de Recaudaciones
+|   |   |   |   |   |_ Rentas Varias
+|   |   |   |   |   |_ Liquidacion de Intereses
+|   |   |   |   |_ Reportes
+|   |   |   |   |   |_ Reporte de Convenio
+|   |   |   |   |   |_ Reporte de Recaudaciones
+|   |   |   |   |   |_ Alcabalas
+|   |   |   |   |   |_ Validacion de Tasas
+|   |   |   |_ fe
+|   |   |   |   |_ Mantenimientos
+|   |   |   |   |   |_ ParametrosPage
+|   |   |   |   |   |_ CertificadoElectronicoPage
+|   |   |_in
+|   |   |   |_ Mantenimientos
+|   |   |   |   |_ Estado
+|   |   |   |   |_ Unidad Medida
+|   |   |   |   |_ Area
+|   |   |   |   |_ Asignacion de Usuario por Area
+|   |   |   |   |_ Grupo
+|   |   |   |   |_ Subgrupo
+|   |   |   |   |_ Item
+|   |   |   |   |_ Unidad de Medida por Item
+|   |   |   |   |_ Asignacion de Item  a Areas
+|   |   |   |   |_ Transicion de Estados
+|   |   |   |   |_ Responsable
+|   |   |   |   |_ Tipo de Gasto por Direccion
+|   |   |   |   |_ Asignacion de Item a Cuenta Contable
+|   |   |   |   |_ Reporte
+|   |   |   |   |_ Motivos
+|   |   |   |   |_ Item por Proveedor
+|   |   |   |_ Documentos
+|   |   |   |   |_ Solicitud
+|   |   |   |   |   |_ Item
+|   |   |   |   |   |_ Reposición de Stock
+|   |   |   |   |   |_ Repuestos/Materiales
+|   |   |   |   |   |_ Baja de Item
+|   |   |   |   |_ Pedido de Repuestos o Materiales
+|   |   |   |   |_ Ingreso a Bodega Proveeduria
+|   |   |   |   |_ Egreso a Bodega Proveeduria
+|   |   |   |   |_ Ingreso a Bodega General
+|   |   |   |   |_ Egreso a Bodega General
+|   |   |   |   |_ Transaccion Bodega
+|   |   |   |   |_ Ajuste de Bodega
+|   |   |   |   |_ Control Inventario
+|   |   |   |   |   |_ Solicitud
+|   |   |   |   |   |_ Inventario del Sistema
+|   |   |   |   |   |_ Inventario Físico
+|   |   |   |   |   |_ Novedades
+|   |   |   |   |   |   |_Items Existencias
+|   |   |   |   |   |   |_Items No Definidos
+|   |   |   |_ Procesos
+|   |   |   |   |_ Generación de Kárdex
+|   |   |   |   |_ Informe Contable
+|   |   |   |_ Consulta/Reportes
+|   |   |   |   |_ Pedidos de Materiales y Repuestos
+|   |   |   |   |_ Listado de Ítems por Equipo
+|   |   |   |   |_ Diario
+|   |   |   |   |_ Listado de Materiales
+|   |   |   |   |_ Consulta/Reimpresion Egresos de Bodega
+|   |   |   |   |_ Consulta/Reimpresion Ingresos de Bodega
+|   |   |   |   |_ Listado de Consumo por Item
+|   |   |   |   |_ Consulta Ingreso de Bodega
+|   |   |   |   |_ Existencia de Items
+|   |   |   |   |_ Control Inventario
+|   |   |   |   |   |_ Inventario General
+|   |   |_mr
+|   |   |   |_ Mantenimientos
+|   |   |   |   |_ Taller
+|   |   |   |   |_ Taller Externo
+|   |   |   |   |_ Tipo de Mantenimiento
+|   |   |   |   |_ Transicion de Estados
+|   |   |   |   |_ Responsable
+|   |   |_rh
+|   |   |   |_ Mantenimiento
+|   |   |   |   |_ Tipo de Documento
+|   |   |   |   |   |_ Referencia Legal
+|   |   |   |   |   |_ Ausencia
+|   |   |   |   |   |_ Parametrizacion
+|   |   |   |   |   |_ Horas Extras
+|   |   |   |   |   |_ Dia Feriado
+|   |   |   |   |   |_ Tipo Documento por Referencia Legal
+|   |   |   |   |   |_ Cargo Perfil
+|   |   |   |   |   |_ Definicion de Periodos
+|   |   |   |   |   |_ Antiguedad
+|   |   |   |   |   |_ Empleado Especial
+|   |   |   |   |_ Documentos
+|   |   |   |   |   |_ Justificar
+|   |   |   |   |   |   |_ Atraso
+|   |   |   |   |   |   |_ Inasistencia
+|   |   |   |   |   |   |_ Horario Incumplido
+|   |   |   |   |   |_ Solicitud de Permiso/Licencia/Comision
+|   |   |   |   |   |_ Vacaciones
+|   |   |   |   |   |   |_ Planificacion
+|   |   |   |   |   |   |_ Solicitud de Vacaciones
+|   |   |   |   |   |   |_ Suspension
+|   |   |   |   |   |   |_ Anticipada Emergente
+|   |   |   |   |   |_ Nombramiento
+|   |   |   |   |   |   |_ Permanente
+|   |   |   |   |   |   |_ Provisional
+|   |   |   |   |   |   |_ Libre Remocion
+|   |   |   |   |   |   |_ Periodo Fijo
+|   |   |   |   |   |_ Cese de Funciones
+|   |   |   |   |   |_ Acta Entrega Recepcion
+|   |   |   |   |_ Procesos
+|   |   |   |   |   |_ Prorroga
+|   |   |   |   |   |   |_ Justificación Inasistencia
+|   |   |   |   |   |   |_ Solicitud de Vacación
+|   |   |   |   |   |_ Justificacion Masiva
+|   |   |   |   |   |_ Vacaciones
+|   |   |   |   |   |   |_ Correccion de Fecha de Calculo
+|   |   |   |   |   |   |_ Autorizacion de Vacaciones
+|   |   |   |   |   |   |_ Urgente
+|   |   |   |   |   |   |_ Ajuste de Periodos
+|   |   |   |   |   |   |_ Planificacion de Vacaciones
+|   |   |   |   |   |   |_ Masiva
+|   |   |   |   |   |   |_ Ajuste por Fin de Gestion
+|   |   |   |   |   |_ Suspender
+|   |   |   |   |   |   |_ Permiso
+|   |   |   |   |_ Consultas/Reportes
+|   |   |   |   |   |_ Vacaciones
+|   |   |   |   |   |   |_ Planificacion
+|   |   |   |   |   |   |_ Solicitudes
+|   |   |   |   |   |   |_ Vacaciones Tomadas
+|   |   |   |   |   |   |_ Saldo de Vacaciones
+|   |   |   |   |   |_ Permiso/ Licencia/Comision
+|   |   |   |   |   |_ Control Marcaciones Subalternos
+|   |   |   |   |   |_ Solicitudes Pendientes de Aprobación
+|   |   |   |   |   |   |_ Vacaciones
+|   |   |   |   |   |   |_ Permisos
+|   |   |   |   |   |   |_ Justificaciones
+|   |   |   |   |   |_ Recuperación Laboral
+|   |   |   |   |   |_ Empleado
+|   |   |   |   |   |_ Relación Familiar
+|   |   |   |   |   |_ Marcaciones - Estadisticos
+|   |   |   |   |   |_ Antiguedad Empleado
+|   |   |   |   |_ Autoservicio
+|   |   |   |   |   |_ Consultas
+|   |   |   |   |   |   |_ Rol de Pago
+|   |   |   |   |   |   |_ Marcaciones Mensuales
+|   |   |   |   |   |   |_ Vacaciones Tomadas
+|   |   |   |   |   |   |_ Recuperación Laboral
+|   |   |   |   |   |_ Documentos
+|   |   |   |   |   |   |_ Justificar
+|   |   |   |   |   |   |   |_ Atraso
+|   |   |   |   |   |   |   |_ Inasistencia
+|   |   |   |   |   |   |   |_ Horario Incumplido
+|   |   |   |   |   |   |_ Solicitud de Permiso/Licencia/Comision
+|   |   |   |   |   |   |_ Vacaciones
+|   |   |   |   |   |   |   |_ Planificacion
+|   |   |   |   |   |   |   |_ Solicitud de Vacaciones
+|   |   |   |   |   |_ Registro Marcaciones
+|   |   |   |   |   |_ Actualizar Datos
+|   |   |   |   |   |_ Inbox
+|   |   |_se
+|   |   |   |_ Mantenimientos
+|   |   |   |   |_ Estado
+|   |   |   |   |_ Transicion
+|   |   |   |   |_ Responsable
+|   |   |   |   |_ Usuario
+|   |   |   |   |_ Transaccion
+|   |   |   |   |_ Rol
+|   |   |   |   |_ Rol por Transaccion
+|   |   |   |   |_ Rol por Usuario
+|   |   |   |   |_ Sistema
+|   |   |   |   |_ Modulo
+|   |   |   |   |_ Rol Configuracion
+|   |   |   |   |_ Parametrización
+|   |   |   |_ Consultas/Reportes
+|   |   |   |   |_ Consulta de Log Aplicativo
+|   |   |   |   |_ Consulta de Log Apache
+|   |   |   |   |_ Consulta de Log Batch
+|   |   |   |_ Autoservicio
+|   |   |   |   |_ Cambio de Contraseña
+|   |   |   |   |_ Modificar Perfil
+|   |   |   |   |_ Cargar Cedula
+|   |   |   |   |_ Cargar Foto
+|   |   |   |   |_ Cargar Certificado de Votación
+|   |   |_ug
+
+
