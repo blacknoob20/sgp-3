@@ -9,21 +9,23 @@ export const MainRouter = () => {
     return (
         <Routes>
             <Route path='sesion/*' element={
-                <Public>
-                    <Routes>
-                        <Route index element={<LoginPage />} />
-                        <Route path='verificacion' element={<VerifyIdentityPage />} />
-                    </Routes>
-                </Public>
-            }
-            />
-            <Route path='sesion/identidad/*' element={
-                <Private>
-                    <Routes>
-                        <Route index element={<UserQuestionsPage />} />
-                        <Route path='recuperar' element={<ForgotPassPage />} />
-                    </Routes>
-                </Private>
+                <>
+                    <Public>
+                        <Routes>
+                            <Route index element={<LoginPage />} />
+                            <Route path='verificacion' element={<VerifyIdentityPage />} />
+                        </Routes>
+                    </Public>
+                    <Route path='identidad/*' element={
+                        <Private>
+                            <Routes>
+                                <Route index element={<UserQuestionsPage />} />
+                                <Route path='recuperar' element={<ForgotPassPage />} />
+                            </Routes>
+                        </Private>
+                    }
+                    />
+                </>
             }
             />
             <Route path='/*' element={
@@ -37,15 +39,15 @@ export const MainRouter = () => {
     )
 }
 
-interface RoutesProps{ children: JSX.Element };
+interface RoutesProps { children: JSX.Element };
 
 const Public = ({ children }: RoutesProps) => {
-    const logged = true;
+    const logged = false;
 
     return (logged) ? <Navigate to={'/'} /> : children;
 }
 const Private = ({ children }: RoutesProps) => {
-    const logged = true;
+    const logged = false;
 
     return (logged) ? children : <Navigate to={'/sesion'} />;
 }

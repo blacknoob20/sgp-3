@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { AppstoreOutlined, DownOutlined, EditOutlined, EllipsisOutlined, MenuFoldOutlined, MenuUnfoldOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, DownOutlined, EditOutlined, EllipsisOutlined, MenuFoldOutlined, MenuUnfoldOutlined, QuestionCircleTwoTone, SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar, Card, Col, Divider, Dropdown, Layout, Menu, Row, Space, SpaceProps, Typography } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 
@@ -14,16 +14,9 @@ const menu1 = (
                 label: (
                     <Card
                         style={{ width: 300 }}
-                        cover={
-                            <img
-                                alt="example"
-                                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                            />
-                        }
                         actions={[
                             <SettingOutlined key="setting" />,
                             <EditOutlined key="edit" />,
-                            <EllipsisOutlined key="ellipsis" />,
                         ]}
                     >
                         <Meta
@@ -67,7 +60,9 @@ interface TopbarProps {
 
 export const Topbar = ({ collapsed = false, onClick }: TopbarProps) => {
     return (
-        <Header className='site-layout-background'>
+        <Header
+            className='site-layout-background'
+        >
             <Row>
                 <Col span={2}>
                     {
@@ -79,6 +74,16 @@ export const Topbar = ({ collapsed = false, onClick }: TopbarProps) => {
                 <Col span={22} style={localStyles.avatarToolbar}>
 
                     <SplitSpace>
+                        <a
+                            title='Ayuda'
+                            onClick={e => e.preventDefault()}>
+                            <Typography.Text>
+                                <Space>
+                                    <QuestionCircleTwoTone />
+                                    Ayuda
+                                </Space>
+                            </Typography.Text>
+                        </a>
                         <Dropdown
                             overlay={menu2}
                             trigger={['click']}
@@ -94,14 +99,11 @@ export const Topbar = ({ collapsed = false, onClick }: TopbarProps) => {
                                 </Typography.Text>
                             </a>
                         </Dropdown>
-                        <Space>
-                            <Dropdown overlay={menu1} trigger={['click']}>
-                                <a onClick={e => e.preventDefault()}>
-                                    <Avatar shape={'square'} {...localStyles.avatarProps} />
-                                </a>
-                            </Dropdown>
-                            User
-                        </Space>
+                        <Dropdown overlay={menu1} trigger={['click']}>
+                            <a onClick={e => e.preventDefault()}>
+                                <Avatar shape={'square'} {...localStyles.avatarProps} />
+                            </a>
+                        </Dropdown>
                     </SplitSpace>
                 </Col>
             </Row>

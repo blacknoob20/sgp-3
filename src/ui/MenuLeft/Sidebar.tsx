@@ -3,13 +3,21 @@ import { Layout, Menu, Typography } from 'antd';
 
 const { Sider, } = Layout;
 
-export const Sidebar = ({collapsed = false}) => {
+export const Sidebar = ({ collapsed = false }) => {
 
     return (
-        <Sider trigger={null} collapsible collapsed={collapsed}>
+        <Sider
+            className='sider-layout'
+            trigger={null}
+            collapsible
+            collapsed={collapsed}
+        >
             {/* <div className='logo' /> */}
             <Typography.Title level={3} style={{ color: 'white', textAlign: 'center' }}>SGP 3</Typography.Title>
             <Menu
+                style={{
+                    background: '#003f5c'
+                }}
                 theme='dark'
                 mode='inline'
                 defaultSelectedKeys={['1']}

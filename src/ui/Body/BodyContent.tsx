@@ -13,7 +13,6 @@ export const BodyContent = () => {
                 overflow: 'scroll',
             }}
         >
-
             <Form
                 labelCol={{ span: 6 }}
                 wrapperCol={{ span: 14 }}
@@ -100,13 +99,13 @@ export const BodyContent = () => {
 
                 <Divider />
 
-                <p style={{textAlign: 'center'}}>
+                <div style={{textAlign: 'center'}}>
                     <Space>
                         <Button type={'primary'}>Grabar</Button>
                         <Button>Limpiar</Button>
                         <Button>Volver</Button>
                     </Space>
-                </p>
+                </div>
             </Form >
 
         </Content >

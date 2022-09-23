@@ -1,8 +1,33 @@
-import { Button, Card, Checkbox, Form, Input, Layout } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { Button, Card, Form, Input, Layout, Typography } from 'antd';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.prefectura.svg';
+import { useFetch } from '../hooks/useFetch';
+import { useForm } from '../hooks/useForm';
+
+interface Login {
+    idusuario: string;
+    clave: string;
+    ip?: string;
+}
+
+const initialState: Login = {
+    idusuario: 'crguerrero',
+    clave: '123456',
+}
 
 export const LoginPage = () => {
+    const { formValues, handleInputChange } = useForm(initialState);
+    const { fetchSinToken } = useFetch();
+
+    const handleSubmit = async () => {
+        // const data = await fetchSinToken('http://localhost:88/public/login', {...formValues, ip:'127.0.0.1'});
+        const data = await fetchSinToken('http://localhost:88/public/login', formValues);
+        console.log(formValues, data);
+
+    }
+
+
     return (
         <Layout className='login-layout'>
             <Card
@@ -15,25 +40,34 @@ export const LoginPage = () => {
                     name='basic'
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
-                    initialValues={{ remember: true }}
-                    // onFinish={onFinish}
+                    initialValues={initialState}
+                    onFinish={handleSubmit}
                     // onFinishFailed={onFinishFailed}
                     autoComplete='off'
                 >
                     <Form.Item
-                        label='Username'
-                        name='username'
-                        rules={[{ required: true, message: 'Por favor, ingrese su username!' }]}
+                        label={<Typography.Text strong>Usuario</Typography.Text>}
+                        name='idusuario'
+                        rules={[{ required: true, message: '¡ Por favor, ingrese su usuario !' }]}
                     >
-                        <Input />
+                        <Input
+                            placeholder='Usuario de red'
+                            suffix={<Typography.Text type={'secondary'}><UserOutlined /></Typography.Text>}
+                            onChange={handleInputChange}
+                        // value={formValues.idusuario}
+                        />
                     </Form.Item>
 
                     <Form.Item
-                        label='Password'
-                        name='password'
-                        rules={[{ required: true, message: 'Por favor, ingrese su password!' }]}
+                        label={<Typography.Text strong>Contraseña</Typography.Text>}
+                        name='clave'
+                        rules={[{ required: true, message: '¡ Por favor, ingrese su contraseña !' }]}
                     >
-                        <Input.Password />
+                        <Input.Password
+                            placeholder='Clave de acceso'
+                            onChange={handleInputChange}
+                        // value={formValues.clave}
+                        />
                     </Form.Item>
 
                     <Form.Item wrapperCol={{ offset: 6, span: 18 }}>
@@ -41,7 +75,7 @@ export const LoginPage = () => {
                     </Form.Item>
 
                     <Button type='primary' htmlType='submit' block>
-                        Submit
+                        Acceder
                     </Button>
                 </Form>
             </Card>
