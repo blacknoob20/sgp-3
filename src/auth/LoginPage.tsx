@@ -1,49 +1,54 @@
-import { UserOutlined } from '@ant-design/icons';
-import { Button, Card, Form, Input, Layout, Typography } from 'antd';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import { Alert, Button, Card, Form, Input, Layout, Typography } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+
+
 import logo from '../assets/logo.prefectura.svg';
-import { useFetch } from '../hooks/useFetch';
-import { useForm } from '../hooks/useForm';
+import { useIniciarSesionMutation } from '../store/apis/auth/authApi';
 
-interface Login {
-    idusuario: string;
-    clave: string;
-    ip?: string;
-}
-
-const initialState: Login = {
-    idusuario: 'crguerrero',
+const formValues = {
     clave: '123456',
+    idusuario: 'lupesantes',
 }
 
 export const LoginPage = () => {
-    const { formValues, handleInputChange } = useForm(initialState);
-    const { fetchSinToken } = useFetch();
+    const [IniciarSesion, AuthStore] = useIniciarSesionMutation();
+    const [form] = Form.useForm();
+    const { isLoading, isError, error: errors }: any = AuthStore;
 
-    const handleSubmit = async () => {
-        // const data = await fetchSinToken('http://localhost:88/public/login', {...formValues, ip:'127.0.0.1'});
-        const data = await fetchSinToken('http://localhost:88/public/login', formValues);
-        console.log(formValues, data);
+    useEffect(() => {
+        form.setFieldsValue(formValues);
+    }, []);
 
+    const handleSubmit = async (values: any) => {
+        try {
+            const payload = await IniciarSesion(values).unwrap();
+
+            console.log('fulfilled', JSON.stringify(payload, null, 4));
+        } catch (error: any) {
+            console.log('rejected', JSON.stringify(error.status, null, 4));
+        }
     }
 
 
     return (
         <Layout className='login-layout'>
             <Card
-                style={{ width: 500 }}
+                style={{ width: 500, height: 500 }}
                 cover={
                     <img src={logo} alt='Logo-prefectura' height={200} style={{ marginTop: 25 }} />
                 }
             >
                 <Form
-                    name='basic'
+                    autoComplete='off'
+                    disabled={isLoading}
+                    form={form}
                     labelCol={{ span: 6 }}
-                    wrapperCol={{ span: 18 }}
-                    initialValues={initialState}
                     onFinish={handleSubmit}
                     // onFinishFailed={onFinishFailed}
-                    autoComplete='off'
+                    wrapperCol={{ span: 18 }}
                 >
                     <Form.Item
                         label={<Typography.Text strong>Usuario</Typography.Text>}
@@ -53,8 +58,6 @@ export const LoginPage = () => {
                         <Input
                             placeholder='Usuario de red'
                             suffix={<Typography.Text type={'secondary'}><UserOutlined /></Typography.Text>}
-                            onChange={handleInputChange}
-                        // value={formValues.idusuario}
                         />
                     </Form.Item>
 
@@ -65,19 +68,25 @@ export const LoginPage = () => {
                     >
                         <Input.Password
                             placeholder='Clave de acceso'
-                            onChange={handleInputChange}
-                        // value={formValues.clave}
                         />
                     </Form.Item>
 
-                    <Form.Item wrapperCol={{ offset: 6, span: 18 }}>
-                        <Link to={'recuperar'}>¿Olvidó su contraseña?</Link>
-                    </Form.Item>
-
-                    <Button type='primary' htmlType='submit' block>
+                    <Button type='primary' htmlType='submit' block loading={isLoading}>
                         Acceder
                     </Button>
+
+                    <Form.Item wrapperCol={{ offset: 16, span: 8 }}>
+                        <Link to={'recuperar'}>¿Olvidó su contraseña?</Link>
+                    </Form.Item>
                 </Form>
+                {
+                    isError && <Alert
+                        message={errors?.status}
+                        description={errors?.error}
+                        type='error'
+                        showIcon
+                    />
+                }
             </Card>
         </Layout>
     )
