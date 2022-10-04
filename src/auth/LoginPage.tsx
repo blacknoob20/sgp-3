@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../hooks/useReduxToolkit';
 
 import { Alert, Button, Card, Form, Input, Layout, Typography } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
+import { IniciarSesion } from '../store/slices/auth/loginSlice';
+import { useIniciarSesionApiMutation } from '../store/apis/auth/authApi';
 
 import logo from '../assets/logo.prefectura.svg';
-import { useIniciarSesionMutation } from '../store/apis/auth/authApi';
-
-const formValues = {
-    clave: '123456',
-    idusuario: 'lupesantes',
-}
 
 export const LoginPage = () => {
-    const [IniciarSesion, AuthStore] = useIniciarSesionMutation();
+    const navigate = useNavigate();
+    const formValues = useAppSelector((state) => state.auth.login);
+    const dispatch = useAppDispatch();
     const [form] = Form.useForm();
+    const [IniciarSesionApi, AuthStore] = useIniciarSesionApiMutation();
     const { isLoading, isError, error: errors }: any = AuthStore;
 
     useEffect(() => {
@@ -24,14 +24,14 @@ export const LoginPage = () => {
 
     const handleSubmit = async (values: any) => {
         try {
-            const payload = await IniciarSesion(values).unwrap();
+            const payload = await IniciarSesionApi(values).unwrap();
 
-            console.log('fulfilled', JSON.stringify(payload, null, 4));
+            dispatch(IniciarSesion({ ...values, ...payload }));
+            navigate('/');
         } catch (error: any) {
             console.log('rejected', JSON.stringify(error.status, null, 4));
         }
     }
-
 
     return (
         <Layout className='login-layout'>
@@ -76,7 +76,7 @@ export const LoginPage = () => {
                     </Button>
 
                     <Form.Item wrapperCol={{ offset: 16, span: 8 }}>
-                        <Link to={'recuperar'}>¿Olvidó su contraseña?</Link>
+                        <Link to={'verificacion'}>¿Olvidó su contraseña?</Link>
                     </Form.Item>
                 </Form>
                 {
