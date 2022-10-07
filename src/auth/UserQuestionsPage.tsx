@@ -5,13 +5,13 @@ import { Alert, Badge, Button, Card, Divider, Form, Input, Layout, Space } from 
 
 import { useAppDispatch, useAppSelector } from '../hooks/useReduxToolkit';
 import { useGetPreguntasMutation, useValidaPreguntasApiMutation } from '../store/apis/auth/authApi';
-import { RecuperarClave, RecuperarClaveProps } from '../store/slices/auth/loginSlice';
+import { RecuperarClaveReducer } from '../store/slices/auth/loginSlice';
 
 export const UserQuestionsPage = () => {
     const formValues = useAppSelector(state => state.auth.recuperar);
     const dispatch = useAppDispatch();
-    const [ValidaPreguntasApi, AuthApi] = useValidaPreguntasApiMutation();
     const [GetPreguntas] = useGetPreguntasMutation();
+    const [ValidaPreguntasApi, AuthApi] = useValidaPreguntasApiMutation();
     const { isLoading, isError, error: errors }: any = AuthApi;
     const navigate = useNavigate();
     const [form] = Form.useForm();
@@ -20,7 +20,7 @@ export const UserQuestionsPage = () => {
         try {
             const payload = await GetPreguntas(params).unwrap();
 
-            dispatch(RecuperarClave({ ...formValues, ...payload }));
+            dispatch(RecuperarClaveReducer({ ...formValues, ...payload }));
             form.setFieldsValue({ ...formValues, respuesta: '' });
 
         } catch (error) {
@@ -45,7 +45,7 @@ export const UserQuestionsPage = () => {
         try {
             const payload = await ValidaPreguntasApi({ ...formValues, ...values }).unwrap();
 
-            dispatch(RecuperarClave({ ...formValues, ...payload }));
+            dispatch(RecuperarClaveReducer({ ...formValues, ...payload }));
             navigate('/sesion/recuperar');
         } catch (error: any) {
             console.log('rejected', JSON.stringify(error, null, 4));
@@ -58,7 +58,7 @@ export const UserQuestionsPage = () => {
                 <Card
                     title={' '}
                     size={'small'}
-                    style={{ width: 500, height: 275 }}
+                    style={{ width: '98vw', height: 275 }}
                 >
                     <Form
                         autoComplete='off'

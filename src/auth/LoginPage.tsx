@@ -1,42 +1,28 @@
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../hooks/useReduxToolkit';
-
+import { Link } from 'react-router-dom';
 import { Alert, Button, Card, Form, Input, Layout, Typography } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-
-import { IniciarSesion } from '../store/slices/auth/loginSlice';
-import { useIniciarSesionApiMutation } from '../store/apis/auth/authApi';
+import { useAuthStore } from './hooks/useAuthStore';
 
 import logo from '../assets/logo.prefectura.svg';
+import useWindowDimensions from '../hooks/useWindowDimensions';
 
 export const LoginPage = () => {
-    const navigate = useNavigate();
-    const formValues = useAppSelector((state) => state.auth.login);
-    const dispatch = useAppDispatch();
     const [form] = Form.useForm();
-    const [IniciarSesionApi, AuthStore] = useIniciarSesionApiMutation();
-    const { isLoading, isError, error: errors }: any = AuthStore;
-
+    const { formValues, isLoading, isError, errors, IniciarSesion } = useAuthStore();
+    const { x: screenWidth } = useWindowDimensions();
     useEffect(() => {
         form.setFieldsValue(formValues);
     }, []);
 
     const handleSubmit = async (values: any) => {
-        try {
-            const payload = await IniciarSesionApi(values).unwrap();
-
-            dispatch(IniciarSesion({ ...values, ...payload }));
-            navigate('/');
-        } catch (error: any) {
-            console.log('rejected', JSON.stringify(error.status, null, 4));
-        }
+        IniciarSesion(values);
     }
 
     return (
         <Layout className='login-layout'>
             <Card
-                style={{ width: 500, height: 500 }}
+                style={{ width: (screenWidth < 500 ? '95vw' : 500), height: 500 }}
                 cover={
                     <img src={logo} alt='Logo-prefectura' height={200} style={{ marginTop: 25 }} />
                 }

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Badge, Button, Card, Divider, Form, Image, Input, Layout, Space, Typography } from 'antd';
 import { useGetCaptchaQuery, useGetPreguntasMutation } from '../store/apis/auth/authApi';
 import { useAppDispatch, useAppSelector } from '../hooks/useReduxToolkit';
-import { RecuperarClave } from '../store/slices/auth/loginSlice';
+import { RecuperarClaveReducer } from '../store/slices/auth/loginSlice';
 
 export const VerifyIdentityPage = () => {
     const formValues = useAppSelector(state => state.auth.recuperar);
@@ -44,7 +44,7 @@ export const VerifyIdentityPage = () => {
         try {
             const payload = await GetPreguntas(values).unwrap();
 
-            dispatch(RecuperarClave({...values, ...payload}));
+            dispatch(RecuperarClaveReducer({...values, ...payload}));
             navigate('/sesion/identidad');
             // console.log('fulfilled', JSON.stringify(payload, null, 4));
         } catch (error: any) {
