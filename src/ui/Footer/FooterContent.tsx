@@ -1,11 +1,12 @@
-import { Layout } from 'antd';
-
-const { Footer } = Layout;
+import { Layout, Typography } from 'antd';
 
 export const FooterContent = () => {
     return (
-        <Footer className='footer-layout'>
-            <small><h1>Copyright © 2022 SGP plus.</h1> Desarrollado por la Dirección de Tecnologías de Información y Comunicación | Todos los derechos reservados.</small>
-        </Footer>
+        <Layout.Footer className='footer-layout'>
+            <small>
+                <Typography.Title level={5} italic type={'secondary'}>Copyright © 2022 SGP plus.</Typography.Title>
+                <Typography.Text type={'secondary'} >Desarrollado por la Dirección de Tecnologías de Información y Comunicación | Todos los derechos reservados.</Typography.Text>
+            </small>
+        </Layout.Footer>
     )
 }
