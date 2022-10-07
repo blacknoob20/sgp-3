@@ -1,10 +1,12 @@
-import { Badge, Button, Card, Divider, Form, Input, Layout, Select, Space, Typography } from 'antd';
-const { Content } = Layout;
+import { Layout } from 'antd';
 
+type Props = {
+    children?: React.ReactNode
+}
 
-export const BodyContent = () => {
+export const BodyContent = ({ children }:Props ) => {
     return (
-        <Content
+        <Layout.Content
             className='site-layout-background'
             style={{
                 margin: '0px 16px',
@@ -13,7 +15,8 @@ export const BodyContent = () => {
                 overflow: 'scroll',
             }}
         >
-            <Form
+            {children}
+            {/* <Form
                 labelCol={{ span: 6 }}
                 wrapperCol={{ span: 14 }}
             >
@@ -99,15 +102,15 @@ export const BodyContent = () => {
 
                 <Divider />
 
-                <div style={{textAlign: 'center'}}>
+                <div style={{ textAlign: 'center' }}>
                     <Space>
                         <Button type={'primary'}>Grabar</Button>
                         <Button>Limpiar</Button>
                         <Button>Volver</Button>
                     </Space>
                 </div>
-            </Form >
+            </Form > */}
 
-        </Content >
+        </Layout.Content >
     )
 }
