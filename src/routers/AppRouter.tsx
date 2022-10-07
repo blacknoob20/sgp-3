@@ -1,16 +1,16 @@
-import { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Layout, Result } from 'antd';
 
-import useWindowDimensions from './hooks/useWindowDimensions';
-import { BodyContent } from './ui/Body/BodyContent';
-import { FooterContent } from './ui/Footer/FooterContent';
-import { HeaderContent } from './ui/Header/HeaderContent';
-import { Sidebar } from './ui/MenuLeft/Sidebar';
-import { Topbar } from './ui/MenuTop/Topbar';
+import { Sidebar } from '../ui/MenuLeft/Sidebar';
+import { Topbar } from '../ui/MenuTop/Topbar';
+import { HeaderContent } from '../ui/Header/HeaderContent';
+import { BodyContent } from '../ui/Body/BodyContent';
+import { FooterContent } from '../ui/Footer/FooterContent';
+import useWindowDimensions from '../hooks/useWindowDimensions';
 
-const App: FC = () => {
+export const SubMainRouter = () => {
    const { x: width } = useWindowDimensions();
-   const [collapsed, setCollapsed] = useState(false);
+   const [collapsed, setCollapsed] = useState((width <= 800));
 
    useEffect(() => {
       setCollapsed((width <= 800));
@@ -42,5 +42,3 @@ const App: FC = () => {
       </Layout >
    )
 }
-
-export default App;
